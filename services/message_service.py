@@ -1,6 +1,6 @@
 from utils.kafka_util import KafkaProducer
 from common_api.services.v0 import Logger
-from config.config import DETECTION_RESPONSE_CHANNELS
+from config.config import OCR_RESPONSE_CHANNELS
 
 logger = Logger()
 
@@ -15,7 +15,7 @@ class MessageService:
                 "secret": secret,
                 "url": str(url),
                 "model": model,
-                "response": DETECTION_RESPONSE_CHANNELS
+                "response": OCR_RESPONSE_CHANNELS
             }
 
             self.producer.send_message(topic=topic, message=message)

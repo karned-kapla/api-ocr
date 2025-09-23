@@ -1,12 +1,12 @@
-from schemas.detection_schema import detection_serial, list_detection_serial
+from schemas.ocr_schema import ocr_serial, list_ocr_serial
 
 
-def test_detection_serial():
-    detection = {
+def test_ocr_serial():
+    ocr = {
         "created_by": "d3f48a42-0d1e-4270-8e8e-549251cd823d",
         "_id": "12345",
-        "name": "Detection Name",
-        "description": "This is a detection description.",
+        "name": "Ocr Name",
+        "description": "This is a ocr description.",
         "price": 10.99,
         "quantity": 2,
         "number_of_persons": 4,
@@ -28,8 +28,8 @@ def test_detection_serial():
     expected_output = {
         "created_by": "d3f48a42-0d1e-4270-8e8e-549251cd823d",
         "uuid": "12345",
-        "name": "Detection Name",
-        "description": "This is a detection description.",
+        "name": "Ocr Name",
+        "description": "This is a ocr description.",
         "price": 10.99,
         "quantity": 2,
         "number_of_persons": 4,
@@ -48,17 +48,17 @@ def test_detection_serial():
         "large_image_url": "http://example.com/large_image.jpg",
         "source_reference": "Source Reference"
     }
-    assert detection_serial(detection) == expected_output
+    assert ocr_serial(ocr) == expected_output
 
-    detection_minimal = {
+    ocr_minimal = {
         "created_by": "d3f48a42-0d1e-4270-8e8e-549251cd823d",
         "_id": "67890",
-        "name": "Minimal Detection"
+        "name": "Minimal Ocr"
     }
     expected_output_minimal = {
         "created_by": "d3f48a42-0d1e-4270-8e8e-549251cd823d",
         "uuid": "67890",
-        "name": "Minimal Detection",
+        "name": "Minimal Ocr",
         "description": None,
         "price": None,
         "quantity": None,
@@ -72,16 +72,16 @@ def test_detection_serial():
         "large_image_url": None,
         "source_reference": None
     }
-    assert detection_serial(detection_minimal) == expected_output_minimal
+    assert ocr_serial(ocr_minimal) == expected_output_minimal
 
 
-def test_list_detection_serial():
-    detections = [
+def test_list_ocr_serial():
+    ocrs = [
         {
             "created_by": "d3f48a42-0d1e-4270-8e8e-549251cd823d",
             "_id": "12345",
-            "name": "Detection Name",
-            "description": "This is a detection description.",
+            "name": "Ocr Name",
+            "description": "This is a ocr description.",
             "price": 10.99,
             "quantity": 2,
             "number_of_persons": 4,
@@ -103,15 +103,15 @@ def test_list_detection_serial():
         {
             "created_by": "d3f48a42-0d1e-4270-8e8e-549251cd823d",
             "_id": "67890",
-            "name": "Minimal Detection"
+            "name": "Minimal Ocr"
         }
     ]
     expected_output = [
         {
             "created_by": "d3f48a42-0d1e-4270-8e8e-549251cd823d",
             "uuid": "12345",
-            "name": "Detection Name",
-            "description": "This is a detection description.",
+            "name": "Ocr Name",
+            "description": "This is a ocr description.",
             "price": 10.99,
             "quantity": 2,
             "number_of_persons": 4,
@@ -133,7 +133,7 @@ def test_list_detection_serial():
         {
             "created_by": "d3f48a42-0d1e-4270-8e8e-549251cd823d",
             "uuid": "67890",
-            "name": "Minimal Detection",
+            "name": "Minimal Ocr",
             "description": None,
             "price": None,
             "quantity": None,
@@ -148,8 +148,8 @@ def test_list_detection_serial():
             "source_reference": None
         }
     ]
-    assert list_detection_serial(detections) == expected_output
+    assert list_ocr_serial(ocrs) == expected_output
 
-    empty_detections = []
+    empty_ocrs = []
     expected_output_empty = []
-    assert list_detection_serial(empty_detections) == expected_output_empty
+    assert list_ocr_serial(empty_ocrs) == expected_output_empty

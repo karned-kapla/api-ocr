@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# This script creates a development Docker container for api-detection
+# This script creates a development Docker container for api-ocr
 # It mounts the local directory to allow for live code editing
 # The service will automatically restart when files are modified (hot-reload)
 
 # Stop and remove the existing container if it exists
-docker stop karned-api-detection || true
-docker rm karned-api-detection || true
+docker stop karned-api-ocr || true
+docker rm karned-api-ocr || true
 
 # Run the container with local directory mounted
 docker run -d \
-  --name karned-api-detection \
+  --name karned-api-ocr \
   --network karned-network \
   -p 9006:8000 \
   -v "$(pwd):/app" \
@@ -24,15 +24,15 @@ docker run -d \
   -e REDIS_PASSWORD= \
   -e KAFKA_HOST=karned-kafka \
   -e KAFKA_PORT=9092 \
-  -e KAFKA_TOPIC=detections \
+  -e KAFKA_TOPIC=ocrs \
   -e URL_API_GATEWAY=http://api-gateway-service \
-  -e API_NAME=api-detection \
-  -e API_TAG_NAME=detections \
-  killiankopp/api-detection:1.0.0 \
+  -e API_NAME=api-ocr \
+  -e API_TAG_NAME=ocrs \
+  killiankopp/api-ocr:1.0.0 \
   uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
 echo "Development container started. Your local code is mounted at /app in the container."
 echo "Hot-reload is enabled - the service will automatically restart when files are modified."
 echo "Access the API at http://localhost:9006"
-echo "To view logs: docker logs karned-api-detection"
-echo "To stop: docker stop karned-api-detection"
+echo "To view logs: docker logs karned-api-ocr"
+echo "To stop: docker stop karned-api-ocr"

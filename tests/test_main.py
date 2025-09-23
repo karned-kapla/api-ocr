@@ -26,7 +26,7 @@ def mock_router():
 def test_app_initialization():
     """Test that the FastAPI app is initialized correctly."""
     assert isinstance(main.app, FastAPI)
-    assert main.app.openapi_url == "/detection/openapi.json"
+    assert main.app.openapi_url == "/ocr/openapi.json"
 
 
 def test_custom_openapi():
@@ -50,9 +50,9 @@ def test_custom_openapi():
 
             # Verify get_openapi was called with the correct arguments
             mock_get_openapi.assert_called_once_with(
-                title="API Detection",
+                title="API Ocr",
                 version="1.0.0",
-                description="Cookbook detection for all !",
+                description="Cookbook ocr for all !",
                 routes=main.app.routes,
             )
 
@@ -90,7 +90,7 @@ def test_router_registration():
 
     # Check that at least one route has the expected path prefix for v1 router
     route_paths = [route.path for route in main.app.routes if hasattr(route, 'path')]
-    assert any(path.startswith("/detection/v1") for path in route_paths)
+    assert any(path.startswith("/ocr/v1") for path in route_paths)
 
 
 def test_app_with_test_client():

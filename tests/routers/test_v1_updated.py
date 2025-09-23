@@ -4,7 +4,7 @@ from fastapi import HTTPException
 from fastapi.testclient import TestClient
 
 from routers.v1 import router
-from models.detection_model import DetectionWrite
+from models.ocr_model import OcrWrite
 
 
 # Create a test client for the router
@@ -28,7 +28,7 @@ def mock_request():
     # Create token_info with the correct structure and all required roles
     mock_req.state.token_info = {
         'user_id': 'test-user',
-        'user_roles': {'api-detection': ['create', 'read', 'read_own', 'list', 'list_own', 'update', 'update_own', 'delete', 'delete_own']}
+        'user_roles': {'api-ocr': ['create', 'read', 'read_own', 'list', 'list_own', 'update', 'update_own', 'delete', 'delete_own']}
     }
 
     return mock_req, mock_repo
@@ -41,7 +41,7 @@ async def test_create_new_item(mock_check_permissions, mock_request):
     # Mock the create_item service function
     with patch('routers.v1.create_item', return_value="test-uuid") as mock_create:
         # Create a test item
-        item = DetectionWrite(name="Test Item")
+        item = OcrWrite(name="Test Item")
 
         # Call the endpoint function directly
         from routers.v1 import create_new_item
@@ -66,8 +66,8 @@ async def test_read_items(mock_check_permissions, mock_request):
 
     # Mock the get_items service function
     items = [
-        DetectionWrite(name="Item 1"),
-        DetectionWrite(name="Item 2")
+        OcrWrite(name="Item 1"),
+        OcrWrite(name="Item 2")
     ]
     with patch('routers.v1.get_items', return_value=items) as mock_get_items:
         # Call the endpoint function directly
@@ -86,7 +86,7 @@ async def test_read_item_found(mock_check_permissions, mock_request):
     mock_req, mock_repo = mock_request
 
     # Mock the get_item service function
-    item = DetectionWrite(name="Test Item")
+    item = OcrWrite(name="Test Item")
     with patch('routers.v1.get_item', return_value=item) as mock_get_item:
         # Call the endpoint function directly
         from routers.v1 import read_item
@@ -127,7 +127,7 @@ async def test_update_existing_item(mock_check_permissions, mock_request):
     # Mock the update_item service function
     with patch('routers.v1.update_item') as mock_update:
         # Create a test item
-        item = DetectionWrite(name="Updated Item")
+        item = OcrWrite(name="Updated Item")
 
         # Call the endpoint function directly
         from routers.v1 import update_existing_item

@@ -1,23 +1,23 @@
-from services.detection_service import DetectionService
+from services.ocr_service import OcrService
 from services.cache_service import CacheService
 from services.message_service import MessageService
 from services.secret_service import SecretService
 
 # For backward compatibility
-from services.detections_service import (
-    service_create_detection,
-    service_read_detection,
-    service_update_detection,
-    service_delete_detection
+from services.ocrs_service import (
+    service_create_ocr,
+    service_read_ocr,
+    service_update_ocr,
+    service_delete_ocr
 )
 
 __all__ = [
-    'DetectionService',
+    'OcrService',
     'CacheService',
     'MessageService',
     'SecretService',
-    'service_create_detection',
-    'service_read_detection',
-    'service_update_detection',
-    'service_delete_detection'
+    'service_create_ocr',
+    'service_read_ocr',
+    'service_update_ocr',
+    'service_delete_ocr'
 ]

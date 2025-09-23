@@ -2,29 +2,29 @@ from pydantic import BaseModel, HttpUrl, Field
 from typing import Optional, Dict, Any
 
 
-class DetectionBase(BaseModel):
+class OcrBase(BaseModel):
     url: HttpUrl
     model: Optional[str] = None
 
 
-class DetectionCreate(DetectionBase):
+class OcrCreate(OcrBase):
     pass
 
 
-class DetectionCreateDatabase(DetectionBase):
+class OcrCreateDatabase(OcrBase):
     status: str = "pending"
     secret: str = None
-    created_by: Optional[str] = Field(None, description="User who created the detection")
+    created_by: Optional[str] = Field(None, description="User who created the ocr")
 
 
-class DetectionRead(DetectionBase):
+class OcrRead(OcrBase):
     uuid: str
     status: Optional[str] = None
     result: Optional[Dict[str, Any]] = None
-    created_by: Optional[str] = Field(None, description="User who created the detection")
+    created_by: Optional[str] = Field(None, description="User who created the ocr")
 
 
-class DetectionUpdate(BaseModel):
+class OcrUpdate(BaseModel):
     uuid: str
     secret: str
     status: Optional[str] = None

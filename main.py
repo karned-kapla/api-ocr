@@ -33,14 +33,14 @@ init_config(
 
 bearer_scheme = HTTPBearer()
 
-app = FastAPI(openapi_url="/detection/openapi.json")
+app = FastAPI(openapi_url="/ocr/openapi.json")
 def custom_openapi():
     if app.openapi_schema:
         return app.openapi_schema
     openapi_schema = get_openapi(
-        title="API Detection",
+        title="API Ocr",
         version="1.0.0",
-        description="Cookbook detection for all !",
+        description="Cookbook ocr for all !",
         routes=app.routes,
     )
     openapi_schema["components"]["securitySchemes"] = {

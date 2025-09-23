@@ -1,7 +1,7 @@
-# api-detection
+# api-ocr
 
 ## Description
-Simple API to manage detections.
+Simple API to manage ocrs.
 
 ## Requirements
 Install requirements:
@@ -18,7 +18,7 @@ https://fastapi.tiangolo.com/fr/tutorial/first-steps/
 ## lancer l'API en local
 ```sh
 docker run -d \
---name api-detection \
+--name api-ocr \
 -p 8000:8000 \
 -v $(pwd):/app \
 -e KEYCLOAK_HOST=https://iam.karned.bzh \
@@ -29,13 +29,13 @@ docker run -d \
 -e REDIS_PORT=6379 \
 -e REDIS_DB=0 \
 -e REDIS_PASSWORD=chut! \
-killiankopp/api-detection:latest
+killiankopp/api-ocr:latest
 ```
 `
 ## lancer un MongoDB en local
 ```sh 
 docker run -d \
---name mongodb-api-detection \
+--name mongodb-api-ocr \
 -p 27017:27017 \
 -v ./_mongo_data:/data/db \
 mongo

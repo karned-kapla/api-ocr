@@ -16,8 +16,8 @@ FROM python:3.12-slim
 ENV PYTHONUNBUFFERED=True \
     PORT=8000 \
     WORKERS=1 \
-    API_NAME=api-detection \
-    API_TAG_NAME=detection \
+    API_NAME=api-ocr \
+    API_TAG_NAME=ocr \
     MS_SECRET_TTL=3600
 
 ENV KEYCLOAK_HOST="" \

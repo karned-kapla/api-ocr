@@ -1,7 +1,7 @@
-site_name: API Detection Documentation
-site_description: Documentation for the API Detection service
+site_name: API Ocr Documentation
+site_description: Documentation for the API Ocr service
 site_author: Karned Team
-site_url: https://karned-rekipe.github.io/api-detection/
+site_url: https://karned-rekipe.github.io/api-ocr/
 
 theme:
   name: material

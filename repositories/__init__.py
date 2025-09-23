@@ -1,26 +1,26 @@
 from typing import Type
 
 from common_api.services.v0 import Logger
-from repositories.detection_repository_mongo import DetectionRepositoryMongo
+from repositories.ocr_repository_mongo import OcrRepositoryMongo
 
 logger = Logger()
 
 
 class Repositories:
-    def __init__(self, detection_repo=None):
-        self.detection_repo = detection_repo
+    def __init__(self, ocr_repo=None):
+        self.ocr_repo = ocr_repo
 
 
 class BucketRepositories:
-    def __init__(self, detection_bucket_repo=None):
-        self.detection_bucket_repo = detection_bucket_repo
+    def __init__(self, ocr_bucket_repo=None):
+        self.ocr_bucket_repo = ocr_bucket_repo
 
 
 def get_repositories(uri: str) -> Repositories | Type[Repositories]:
     if uri.startswith("mongodb"):
         logger.info("Using MongoDB repositories")
         return Repositories(
-            detection_repo = DetectionRepositoryMongo(uri)
+            ocr_repo = OcrRepositoryMongo(uri)
         )
 
     return Repositories
