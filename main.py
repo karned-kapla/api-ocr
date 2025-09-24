@@ -40,7 +40,7 @@ def custom_openapi():
     openapi_schema = get_openapi(
         title="API Ocr",
         version="1.0.0",
-        description="Cookbook ocr for all !",
+        description="OCR for all !",
         routes=app.routes,
     )
     openapi_schema["components"]["securitySchemes"] = {
@@ -68,7 +68,6 @@ app.openapi = custom_openapi
 app.add_middleware(DBConnectionMiddleware)
 app.add_middleware(LicenceVerificationMiddleware)
 app.add_middleware(TokenVerificationMiddleware)
-app.add_middleware(CustomCORSMiddleware)
 app.add_exception_handler(HTTPException, http_exception_handler)
 
 app.include_router(v1.router)
