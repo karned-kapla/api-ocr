@@ -4,7 +4,7 @@ from typing import Optional, Dict, Any
 
 class OcrBase(BaseModel):
     url: HttpUrl
-    model: Optional[str] = None
+    model: Optional[Dict[str, Any]] = None
 
 
 class OcrCreate(OcrBase):
