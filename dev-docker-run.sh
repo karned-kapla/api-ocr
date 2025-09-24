@@ -12,7 +12,7 @@ docker rm karned-api-ocr || true
 docker run -d \
   --name karned-api-ocr \
   --network karned-network \
-  -p 9006:8000 \
+  -p 9011:8000 \
   -v "$(pwd):/app" \
   -e KEYCLOAK_HOST=http://karned-keycloak:8080 \
   -e KEYCLOAK_REALM=karned \
@@ -33,6 +33,6 @@ docker run -d \
 
 echo "Development container started. Your local code is mounted at /app in the container."
 echo "Hot-reload is enabled - the service will automatically restart when files are modified."
-echo "Access the API at http://localhost:9006"
+echo "Access the API at http://localhost:9011"
 echo "To view logs: docker logs karned-api-ocr"
 echo "To stop: docker stop karned-api-ocr"
