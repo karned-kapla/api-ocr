@@ -1,13 +1,16 @@
+import json
 from fastapi import HTTPException
 from common_api.middlewares.v1.database_middleware import check_repo
 from common_api.utils.v0 import get_state_repos
 from common_api.services.v0 import Logger
 from config import KAFKA_TOPIC, MS_SECRET_TTL
 from models.ocr_model import OcrCreate, OcrCreateDatabase, OcrRead, OcrUpdate
+from models.message_model import Task
 from repositories import get_repositories
 from services.cache_service import CacheService
 from services.message_service import MessageService
 from services.secret_service import SecretService
+from config.config import OCR_RESPONSE_CHANNELS
 
 logger = Logger()
 
@@ -39,12 +42,24 @@ class OcrService:
             }
             self.cache_service.store_context(ocr_db.secret, payload, MS_SECRET_TTL)
 
-            self.message_service.send_ocr_task(
-                topic=KAFKA_TOPIC,
-                ocr_uuid=ocr_uuid,
+            model_str = json.dumps(ocr_db.model.model_dump()) if ocr_db.model else json.dumps({"detection": "db_resnet34", "recognition": "crnn_vgg16_bn"})
+
+            message = {
+                "url": str(ocr_db.url),
+                "model": model_str,
+                "format": ocr_db.format
+            }
+
+            task = Task(
+                uuid=ocr_uuid,
                 secret=ocr_db.secret,
-                url=ocr_db.url,
-                model=ocr_db.model
+                response=OCR_RESPONSE_CHANNELS
+            )
+
+            self.message_service.send_task(
+                topic=KAFKA_TOPIC,
+                task=task,
+                payload=message
             )
             
             return ocr_uuid

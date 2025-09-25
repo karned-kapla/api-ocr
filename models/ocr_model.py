@@ -2,9 +2,15 @@ from pydantic import BaseModel, HttpUrl, Field
 from typing import Optional, Dict, Any
 
 
+class OcrModel(BaseModel):
+    detection: Optional[str] = Field("db_resnet34")
+    recognition: Optional[str] = Field("crnn_vgg16_bn")
+
+
 class OcrBase(BaseModel):
     url: HttpUrl
-    model: Optional[Dict[str, Any]] = None
+    model: Optional[OcrModel] = None
+    format: Optional[str] = Field("json", description="Output format (json, csv or txt)")
 
 
 class OcrCreate(OcrBase):

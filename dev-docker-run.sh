@@ -27,7 +27,7 @@ docker run -d \
   -e KAFKA_TOPIC=ocrs \
   -e URL_API_GATEWAY=http://api-gateway-service \
   -e API_NAME=api-ocr \
-  -e API_TAG_NAME=ocrs \
+  -e API_TAG_NAME=ocr \
   killiankopp/api-ocr:1.0.0 \
   uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
